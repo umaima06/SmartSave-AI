@@ -1,0 +1,145 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0f8ff;
+    color: #0a2e52;
+  }
+  
+  /* Container Layout */
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Navbar */
+  nav {
+    background: #0a2e52;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .logo span {
+    color: #00b4d8;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+  }
+  
+  .btn-outline {
+    border: 1px solid white;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .btn-outline:hover {
+    background: white;
+    color: #0a2e52;
+  }
+  
+  /* Main Section */
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1rem;
+  }
+  
+  .main-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .main-content p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+  
+  /* CTA Button */
+  .cta-buttons .btn-solid {
+    background: #0077b6;
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
+  
+  .cta-buttons .btn-solid:hover {
+    background: #023e8a;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background: #caf0f8;
+    color: #333;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .main-content h1 {
+      font-size: 2rem;
+    }
+  
+    .main-content p {
+      font-size: 1rem;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 1rem;
+    }
+  
+    .nav-links a {
+      padding: 0.4rem 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .main-content {
+      padding: 2rem 1rem;
+    }
+  
+    .main-content h1 {
+      font-size: 1.8rem;
+    }
+  
+    .cta-buttons .btn-solid {
+      width: 100%;
+      padding: 0.8rem;
+    }
+  }
+  
