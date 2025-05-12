@@ -2,65 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SmartSave AI - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartSave AI - Budget Assistant</title>
   <link rel="stylesheet" href="homepage.css" />
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">SmartSave <span class="ai">AI</span></div>
-    <div class="nav-links">
-      <a href="#about">About Us</a>
-      <a href="login.html" class="signin-btn">Sign In</a>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1>Let AI Handle Your Budget</h1>
-    <p>Track expenses, save smartly, and unlock financial clarity in seconds.</p>
+  <!-- Header -->
+  <header>
+   <div class="logo">SmartSave <span>AI</span></div>
+    <nav>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">How It Works</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="btn">Sign In</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Input Form Section -->
-  <section class="form-section">
-    <div class="form-container">
-      <h2>Enter Your Financial Details</h2>
-      <form id="budget-form">
-        <input type="number" placeholder="Monthly Income (₹)" required />
-        <input type="number" placeholder="Total Monthly Expenses (₹)" required />
-        <input type="number" placeholder="Current Savings (₹)" required />
-        <button type="submit">Generate My Budget</button>
-      </form>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Take Control of Your Finances</h1>
+    <p>Track your expenses, save smarter, and let AI guide your budget.</p>
+  </section>
+
+  <!-- Form Section -->
+  <!-- Expense Form Section -->
+<section id="form-section" class="form-section">
+  <h2>Enter Your Expenses</h2>
+  <form id="budget-form">
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="food" /> Food & Snacks</label>
+      <input type="number" id="food" class="amount-input" placeholder="₹" disabled />
     </div>
-  </section>
 
-  <!-- About Section -->
-  <section class="about-section" id="about">
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="transport" /> Transportation</label>
+      <input type="number" id="transport" class="amount-input" placeholder="₹" disabled />
+    </div>
 
-    <p>
-      SmartSave AI is your intelligent financial assistant, built to help students take control of their money. We use AI to analyze your income, expenses, and savings, and generate optimized budgets and smart saving strategies — no stress, just results.
-    </p>
-  </section>
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="mobile" /> Mobile/Data Plans</label>
+      <input type="number" id="mobile" class="amount-input" placeholder="₹" disabled />
+    </div>
+
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="subscriptions" /> Subscriptions</label>
+      <input type="number" id="subscriptions" class="amount-input" placeholder="₹" disabled />
+    </div>
+
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="academic" /> Academic Stuff</label>
+      <input type="number" id="academic" class="amount-input" placeholder="₹" disabled />
+    </div>
+
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="social" /> Social Life</label>
+      <input type="number" id="social" class="amount-input" placeholder="₹" disabled />
+    </div>
+
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="selfcare" /> Self-care & Grooming</label>
+      <input type="number" id="selfcare" class="amount-input" placeholder="₹" disabled />
+    </div>
+
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="tech" /> Tech & Gadgets</label>
+      <input type="number" id="tech" class="amount-input" placeholder="₹" disabled />
+    </div>
+
+    <div class="expense-group">
+      <label><input type="checkbox" class="category-check" data-target="savings" /> Emergency or Savings</label>
+      <input type="number" id="savings" class="amount-input" placeholder="₹" disabled />
+    </div>
+
+    <textarea placeholder="Describe your spending habits (optional)"></textarea>
+    <input type="date" required />
+    <button type="submit">Generate My Budget</button>
+  </form>
+</section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-column">
-      <h4>Quick Links</h4>
-      <a href="#">About Us</a><br>
-      <a href="#">Privacy Policy</a><br>
-      <a href="#">Contact Us</a>
+  <footer>
+    <p>&copy; 2025 SmartSave AI. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms</a> | 
+      <a href="#">Contact</a>
     </div>
   </footer>
 
-  <!-- JS -->
-  <script>
-    document.getElementById("budget-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      window.location.href = "dashboard.html";
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
