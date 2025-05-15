@@ -89,21 +89,38 @@ document.addEventListener("DOMContentLoaded", () => {
       dropdown.classList.remove("show-dropdown");
     }
   });
+}) 
 
-  // 🔓 Logout
-  const logoutBtn = document.getElementById("logoutBtn");
-  logoutBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    try {
-      await signOut(auth);
-      window.location.href = "login.html";
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  });
+ // 🔓 Logout
+// Logout button to trigger the modal
+const logoutBtn = document.getElementById("logoutBtn");
+const logoutModal = document.getElementById("logoutModal");
+const confirmLogoutBtn = document.getElementById("confirmLogout");
+const cancelLogoutBtn = document.getElementById("cancelLogout");
+
+// Show modal when logout button is clicked
+logoutBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  logoutModal.style.display = "flex"; // Show the modal
 });
 
-// 🍔 Mobile Navbar
+// If the user confirms logout
+confirmLogoutBtn.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    window.location.href = "index.html"; // redirect after logging out
+  } catch (error) {
+    console.error("Error logging out:", error);
+  }
+  logoutModal.style.display = "none"; // Hide the modal
+});
+
+// If the user cancels logout
+cancelLogoutBtn.addEventListener("click", () => {
+  logoutModal.style.display = "none"; // Close the modal
+});
+
+// Mobile Navbar
 function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("show");
 }

@@ -96,7 +96,58 @@ body {
     cursor: pointer;
     color: white;
   }
-  
+  /* Basic modal styling */
+.logout-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logout-modal-content {
+  background: #dceeff; /* light bluish box */
+  padding: 20px 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logout-modal-content p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #1e2b4d;
+}
+
+.logout-modal-content button {
+  padding: 8px 16px;
+  margin: 0 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#confirmLogout {
+  background: #1e4eb2;
+  color: white;
+}
+
+#confirmLogout:hover {
+  background: #143b8d;
+}
+
+#cancelLogout {
+  background: #f0f4fa;
+  color: #333;
+}
+
+#cancelLogout:hover {
+  background: #e0e8f1;
+}
   /* 👋 Welcome Section */
   .welcome-section {
     padding: 30px;

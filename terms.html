@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms & Conditions - SmartSave AI</title>
+  <link rel="stylesheet" href="terms.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">SmartSave <span>AI</span></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Terms & Conditions</h1>
+    <p class="effective-date" id="last-updated">Last updated: </p>
+
+    <section>
+      <h2>1. Welcome to SmartSave AI!</h2>
+      <p>Thanks for using SmartSave AI — your personal finance buddy built with passion by student developers. By using this site, you're agreeing to our Terms & Conditions below.</p>
+    </section>
+
+    <section>
+      <h2>2. Purpose of the Platform</h2>
+      <p>This project was created to help users manage savings, set goals, and receive financial insights. While we're not certified financial advisors, we genuinely aim to give you tools that make personal finance easier.</p>
+    </section>
+
+    <section>
+      <h2>3. User Conduct & Security</h2>
+      <p>We care about your safety! We recommend you use strong passwords and don't share your login info. We'll do our part by following basic security protocols and encrypting your data where possible.</p>
+    </section>
+
+    <section>
+      <h2>4. Transparency & Limitations</h2>
+      <p>SmartSave AI is still evolving and improving. While we aim to give helpful suggestions and clean visuals, some features might not be perfect. Your feedback helps us grow, so feel free to fill out our  
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSebsXTti6HWH6YUAdE_NTVdbXe-ElY-K5RSsTe9rYU7WocUkg/viewform?usp=sharing" target="_blank">feedback form</a>.</p>
+    </section>
+
+    <section>
+      <h2>5. Updates to Terms</h2>
+      <p>As we keep building, we might update these terms. We'll always post the date below so you're in the loop.</p>
+    </section>
+
+    <section>
+      <h2>6. Contact</h2>
+      <p>Have a question? Confused about a feature? Drop us a message — we're student devs but also the biggest cheerleaders.  email us at <a href="mailto:smartsave.aii@gmail.com">smartsave.aii@gmail.com</a> </p>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 SmartSave AI. All rights reserved.
+  </footer>
+
+  <script>
+    const lastUpdated = new Date(document.lastModified);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("last-updated").textContent =
+      "Last updated: " + lastUpdated.toLocaleDateString("en-US", options);
+  </script>
+
+</body>
+</html>
