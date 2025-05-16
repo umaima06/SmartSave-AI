@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+
+    <!-- Chatbot Toggle Button -->
+    <div id="chatbot-btn" onclick="toggleChatbot()">💬</div>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" style="display: none;">
+        
+        <div id="chatbot-header">
+            <div class="header-content">
+                <span>AI Chatbot</span>
+                </div>
+                <button id="close-btn">×</button>
+        </div>
+
+        <div id="chatbot-messages"></div>
+
+        <div id="typing-indicator" class="hidden">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <div id="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type your message..." onkeypress="handleKeyPress(event)" />
+            <button id="continue-btn" onclick="continueChat()">Continue ⏩</button>
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Toggle chatbot visibility
+      document.getElementById("chatbot-btn").addEventListener("click", () => {
+        const chat = document.getElementById("chatbot-container");
+        chat.style.display = chat.style.display === "block" ? "none" : "block";
+      });
+
+      // Close chatbot
+      const closeBtn = document.getElementById("close-btn");
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+          document.getElementById("chatbot-container").style.display = "none";
+        });
+      }
+
+      // Send + Continue buttons
+      document.getElementById("send-btn").addEventListener("click", sendMessage);
+      document.getElementById("continue-btn").addEventListener("click", continueChat);
+    });
+  </script>
+
+<script src="chatbot.js"></script>
+    
+</body>
+</html>
