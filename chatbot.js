@@ -31,11 +31,12 @@ function sendMessage() {
 
   displayTypingIndicator();
 
-  fetch("http://localhost:5000/api/chatbot", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages: chatHistory })
-  })
+  fetch("https://smartsave-ai.onrender.com/api/chatbot", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ messages: chatHistory })
+})
+
     .then((res) => res.json())
     .then((data) => {
       removeTypingIndicator();
@@ -57,11 +58,12 @@ function continueChat() {
   chatHistory.push({ role: "user", content: userFollowUp });
   displayTypingIndicator();
 
-  fetch("http://localhost:5000/api/chatbot", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages: chatHistory })
-  })
+  fetch("https://smartsave-ai.onrender.com/api/chatbot", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ messages: chatHistory })
+})
+
     .then((res) => res.json())
     .then((data) => {
       removeTypingIndicator();
