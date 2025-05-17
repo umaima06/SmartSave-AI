@@ -150,43 +150,40 @@ document.getElementById("saveBudgetBtn").addEventListener("click", async () => {
   }
 
   updateRemainingAmount();
-});
+});document.getElementById("saveBudgetBtn").addEventListener("click", async () => {
+  const budgetInput = parseFloat(document.getElementById("totalBudgetInput").value);
+  const confirmation = document.getElementById("budgetConfirmation");
+  const user = auth.currentUser;
 
-// Reusable function to calculate total expenses
-function getTotalExpenses() {
-  const inputs = document.querySelectorAll(".amount-input");
-  let total = 0;
-  inputs.forEach(input => {
-    if (!input.disabled && input.value) {
-      total += parseFloat(input.value);
-    }
-  });
-  return total;
-}
-
-// Update remaining amount whenever expenses or budget change
-function updateRemainingAmount() {
-  const totalExpenses = getTotalExpenses();
-  const remaining = totalBudget - totalExpenses;
-  document.getElementById("total-amount").innerText = totalExpenses;
-
-  let remainingEl = document.getElementById("remaining-amount");
-  if (!remainingEl) {
-    const newEl = document.createElement("p");
-    newEl.id = "remaining-amount";
-    newEl.innerHTML = `<strong>Remaining (Savings):</strong> ₹${remaining}`;
-    document.getElementById("total-container").appendChild(newEl);
-  } else {
-    remainingEl.innerHTML = `<strong>Remaining (Savings):</strong> ₹${remaining}`;
+  if (!budgetInput || budgetInput <= 0) {
+    confirmation.innerText = "Please enter a valid budget amount.";
+    confirmation.style.color = "red";
+    confirmation.style.display = "block";
+    return;
   }
-}
 
-// Update remaining whenever expenses are changed
-document.querySelectorAll(".amount-input").forEach(input => {
-  input.addEventListener("input", updateRemainingAmount);
-});
+  if (!user) {
+    alert("Please log in first!");
+    return;
+  }
 
-// Also call update when categories are checked/unchecked
-document.querySelectorAll(".category-check").forEach(check => {
-  check.addEventListener("change", updateRemainingAmount);
+  totalBudget = budgetInput;
+  confirmation.innerText = `Total Budget set to ₹${totalBudget}`;
+  confirmation.style.color = "green";
+  confirmation.style.display = "block";
+
+  try {
+    await setDoc(doc(db, "userPreferences", user.uid), {
+      budget: totalBudget,
+    }, { merge: true });
+
+    console.log("✅ Budget saved in Firestore: ₹" + totalBudget);
+  } catch (err) {
+    console.error("❌ Error saving budget:", err);
+    confirmation.innerText = "Error saving budget. Try again!";
+    confirmation.style.color = "red";
+    confirmation.style.display = "block";
+  }
+
+  updateRemainingAmount();
 });
