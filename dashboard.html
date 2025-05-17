@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-  <!-- 🌐 Navbar -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">SmartSave AI</div>
     <ul class="nav-links" id="navLinks">
@@ -18,42 +18,42 @@
     <div class="avatar" id="userAvatar">S</div>
     <div class="avatar-dropdown" id="avatarDropdown">
       <a href="#" id="logoutBtn">Logout</a>
-    </div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
+   <div class="hamburger" id="hamburgerMenu">☰</div>
   </nav>
 
-  <!-- 👋 Welcome -->
+  <!--  Welcome -->
   <header class="welcome-section">
     <h1>Welcome, <span id="usernameDisplay">User</span> 👋</h1>
     <h2>Let's make smart money moves today!</h2>
   </header>
 
-  <!-- 💳 Budget Cards -->
+  <!-- Budget Cards -->
   <section class="budget-cards">
     <div class="card">Total Budget: ₹<span id="budgetValue">0</span></div>
     <div class="card">Total Expenses: ₹<span id="expenseValue">0</span></div>
     <div class="card">Remaining: ₹<span id="remainingValue">0</span></div>
   </section>
 
-  <!-- 📊 Charts -->
+  <!-- Charts -->
   <section class="charts">
     <div class="chart-card">
       <h3>Expense Breakdown</h3>
       <canvas id="pieChart"></canvas>
     </div>
     <div class="chart-card">
-      <h3>Monthly Spending</h3>
-      <canvas id="lineChart"></canvas>
+      <h3>Goal Tracking</h3>
+         <canvas id="lineChart"></canvas>
+              <p id="noDataMessage" style="display: none; text-align: center; color: #999;">No savings data available</p>
     </div>
   </section>
 
-  <!-- 💡 AI Suggestions -->
+  <!-- AI Suggestions -->
   <section class="ai-suggestions">
     <h2>AI Suggestions 💡</h2>
     <p id="aiTip">Your savings tip will appear here...</p>
   </section>
 
-  <!-- 🎯 Savings Goals -->
+  <!-- Savings Goals -->
   <section class="savings-goals">
     <h2>Savings Goals 🎯</h2>
     <ul id="goalsList">
@@ -71,6 +71,6 @@
 </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="module" src="dashboard.js"></script>
+  <script type="module" src="./dashboard.js" defer></script>
 </body>
 </html>

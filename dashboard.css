@@ -1,102 +1,104 @@
-/* 🌌 Global Styles */
+/*  Global Styles */
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4faff;
-    color: #0a192f;
-  }
-  
-  /* 🔵 Navbar */
-  .navbar {
-    background-color: #0a192f;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-  }
-  
-  .logo {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #cce5ff;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-  
-  .nav-links li a {
-    color: white;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: background 0.3s ease;
-  }
-  
-  .nav-links li a:hover {
-    background-color: #1f3558;
-  }
-  
-  /* 👤 Avatar dropdown */
-  .avatar {
-    width: 40px;
-    height: 40px;
-    background-color: #cce5ff;
-    color: #0a192f;
-    font-weight: bold;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .avatar-dropdown {
-    position: absolute;
-    top: 65px;
-    right: 30px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    display: none;
-    z-index: 99;
-  }
-  
-  .avatar-dropdown a {
-    display: block;
-    padding: 10px 16px;
-    color: #0a192f;
-    text-decoration: none;
-    font-size: 0.95rem;
-  }
-  
-  .avatar-dropdown a:hover {
-    background-color: #f0f8ff;
-  }
-  
-  .show-dropdown {
-    display: block;
-  }
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4faff;
+  color: #0a192f;
+}
 
-  .hamburger {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: white;
-  }
-  /* Basic modal styling */
+/* Navbar */
+.navbar {
+  background-color: #0a192f;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #cce5ff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links li a {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.nav-links li a:hover {
+  background-color: #1f3558;
+}
+
+/* Avatar dropdown */
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #cce5ff;
+  color: #0a192f;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.avatar-dropdown {
+  position: absolute;
+  top: 65px;
+  right: 30px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  z-index: 99;
+}
+
+.avatar-dropdown a {
+  display: block;
+  padding: 10px 16px;
+  color: #0a192f;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.avatar-dropdown a:hover {
+  background-color: #f0f8ff;
+}
+
+.avatar-dropdown.show {
+  display: block;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Modal */
 .logout-modal {
   display: none;
   position: fixed;
@@ -108,7 +110,7 @@ body {
 }
 
 .logout-modal-content {
-  background: #dceeff; /* light bluish box */
+  background: #dceeff;
   padding: 20px 30px;
   border-radius: 12px;
   text-align: center;
@@ -148,90 +150,97 @@ body {
 #cancelLogout:hover {
   background: #e0e8f1;
 }
-  /* 👋 Welcome Section */
-  .welcome-section {
-    padding: 30px;
-    background-color: #e6f0fa;
-    text-align: center;
-    border-bottom: 2px solid #cce5ff;
-  }
-  .welcome-section h2 {
-    margin-top: 10px;
-    font-size: 1.1rem;
-    color: #1c3c65;
-    font-weight: normal;
-  }
-  
-  /* 💳 Budget Cards */
-  .budget-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px;
-  }
-  
-  .card {
-    background-color: #cce5ff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-    min-width: 220px;
-    text-align: center;
-    font-weight: bold;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-  }
-  
-  /* 📊 Charts Section */
-  .charts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px;
-  }
-  
-  .chart-card {
-    background-color: #e6f0fa;
-    border: 1px solid #cfdbe6;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 30px 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .chart-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .chart-card h3 {
-    color: #0a192f;
-    margin-bottom: 12px;
-  }
-  
-  .charts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* this gives spacing between pie and line graph cards */
-    margin: 20px;
-  }
-  canvas {
-    width: 100% !important;
-    height: 300px !important;
-  }
-  
-  .ai-suggestions,
-.savings-goals {
+
+/* Welcome Section */
+.welcome-section {
+  padding: 30px;
   background-color: #e6f0fa;
-  border: 1px solid #cfdbe6;
+  text-align: center;
+  border-bottom: 2px solid #cce5ff;
+}
+
+.welcome-section h2 {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #1c3c65;
+  font-weight: normal;
+}
+
+/*  Budget Cards */
+.budget-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  background: linear-gradient(135deg, #cce5ff, #b0d0f7);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  min-width: 220px;
+  text-align: center;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Charts Section */
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.chart-card {
+  background-color: #d2e3f5;
+  border: 1px solid #b2c7db;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 100%;
+  box-sizing: border-box;
+  max-height: 340px;
+  overflow: hidden;
+}
+
+.chart-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.chart-card h3 {
+  color: #0a192f;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  height: 260px !important;
+  max-height: 260px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  background-color: #eef5fb;
+  border-radius: 8px;
+}
+
+/*  Suggestions & Goals */
+.ai-suggestions,
+.savings-goals {
+  background: linear-gradient(to bottom right, #d5e6f8, #c3d8f2);
+  border: 1px solid #b2c7db;
   border-radius: 12px;
   padding: 20px;
   margin: 30px 20px;
@@ -256,26 +265,71 @@ body {
   font-size: 1rem;
   color: #333;
 }
-  
-  /* 📱 Responsive */
-  @media screen and (max-width: 768px) {
-    .hamburger {
-      display: block;
-    }
-  
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      background-color: #0a192f;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-  
-    .nav-links.show {
-      display: flex;
-    }
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
   }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #0a192f;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: max-content;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .budget-cards {
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .charts {
+    padding: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card {
+    padding: 15px;
+    max-height: unset;
+  }
+
+  .ai-suggestions,
+  .savings-goals {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .logout-modal-content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #0a192f;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
