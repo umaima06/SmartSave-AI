@@ -93,42 +93,40 @@ function updateUserDisplay(userData) {
 
 function updateDashboard(userData) {
   const categories = userData.categoryAmounts || {};
+  const totalExpenses = Object.values(categories).reduce((acc, val) => acc + (parseFloat(val) || 0), 0);
+  const totalBudget = parseFloat(userData.budget) || 0;
+  const remaining = totalBudget - totalExpenses;
 
-const totalExpenses = Object.values(categories).reduce((acc, val) => acc + (parseFloat(val) || 0), 0);
-const savingsGoal = parseFloat(userData.savingsGoal) || 0;
-const totalBudget = totalExpenses + savingsGoal;
-const remaining = totalBudget - totalExpenses; // This will always equal savingsGoal
+  // Update values
+  document.getElementById("budgetValue").textContent = totalBudget.toFixed(2);
+  document.getElementById("expenseValue").textContent = totalExpenses.toFixed(2);
+  document.getElementById("remainingValue").textContent = `${remaining.toFixed(2)} (${remaining >= 0 ? 'On Track!' : 'Overspending!'})`;
 
- document.getElementById("budgetValue").textContent = "₹" + totalBudget.toFixed(2);
-  document.getElementById("expenseValue").textContent = "₹" + totalExpenses.toFixed(2);
-  document.getElementById("remainingValue").textContent = "₹" + remaining.toFixed(2);
-
-  //  Auto-color + alert starts here
+  // Color logic
   const budgetCard = document.querySelector(".budget-cards .card:nth-child(1)");
   const expenseCard = document.querySelector(".budget-cards .card:nth-child(2)");
   const remainingCard = document.querySelector(".budget-cards .card:nth-child(3)");
 
   const remainingPercent = (remaining / totalBudget) * 100;
 
-if (remaining < 0) {
-  alert("⚠️ You're spending more than your budget!");
-  budgetCard.style.backgroundColor = "#f8d7da"; // red
-  remainingCard.style.backgroundColor = "#f8d7da";
-} else if (remaining / totalBudget >= 0.5) {
-  budgetCard.style.backgroundColor = "#d4edda"; // green
-  remainingCard.style.backgroundColor = "#d4edda";
-} else if (remaining / totalBudget >= 0.2) {
-  budgetCard.style.backgroundColor = "#fff3cd"; // yellow
-  remainingCard.style.backgroundColor = "#fff3cd";
-} else {
-  budgetCard.style.backgroundColor = "#f8d7da"; // red
-  remainingCard.style.backgroundColor = "#f8d7da";
-}
+  if (remaining < 0) {
+    alert("⚠️ You're spending more than your budget!");
+    budgetCard.style.backgroundColor = "#f8d7da";
+    remainingCard.style.backgroundColor = "#f8d7da";
+  } else if (remainingPercent >= 50) {
+    budgetCard.style.backgroundColor = "#d4edda";
+    remainingCard.style.backgroundColor = "#d4edda";
+  } else if (remainingPercent >= 20) {
+    budgetCard.style.backgroundColor = "#fff3cd";
+    remainingCard.style.backgroundColor = "#fff3cd";
+  } else {
+    budgetCard.style.backgroundColor = "#f8d7da";
+    remainingCard.style.backgroundColor = "#f8d7da";
+  }
 
-  expenseCard.style.backgroundColor = "#e2e3e5"; // neutral gray
-  //  Auto-color + alert ends here
-document.getElementById("remainingValue").textContent = `₹${remaining.toFixed(2)} (${remaining >= 0 ? 'On Track!' : 'Overspending!'})`;
+  expenseCard.style.backgroundColor = "#e2e3e5";
 
+  // Charts
   const pieLabels = Object.keys(categories);
   const pieData = Object.values(categories);
 
@@ -145,11 +143,7 @@ document.getElementById("remainingValue").textContent = `₹${remaining.toFixed(
 
   drawSavingsLineChart(userData);
 }
-console.log("Total Expenses:", totalExpenses);
-console.log("Savings Goal:", savingsGoal);
-console.log("Total Budget:", totalBudget);
-console.log("Remaining:", remaining);
-console.log("Remaining %:", (remaining / totalBudget) * 100);
+
 function drawSavingsLineChart(userData) {
   const savings = userData.savingsHistory || [];
 
@@ -196,32 +190,32 @@ function drawSavingsLineChart(userData) {
       plugins: {
         legend: {
           display: true,
-          labels: { color: "#333", font: { size: 14, weight: "bold" } }
+          labels: {
+            color: "#333",
+            font: { size: 14, weight: "bold" }
+          }
         }
       }
     }
   });
 }
 
-async function fetchSmartTips(uid){
-  try{
+async function fetchSmartTips(uid) {
+  try {
     const res = await fetch("https://smartsave-ai.onrender.com/api/ai/generate-tips", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({uid})
+      body: JSON.stringify({ uid })
     });
 
     const data = await res.json();
     const tipText = document.getElementById("aiTip");
     tipText.textContent = data.reply;
-    }
-    catch (err) {
-      console.error("Failed to load AI tips:", err);
-      
-      document.getElementById("ai-tip-text").textContent = "Error loading tips. ";
-    }
+  } catch (err) {
+    console.error("Failed to load AI tips:", err);
+    document.getElementById("ai-tip-text").textContent = "Error loading tips.";
   }
-
+}
 
 function setupAvatarDropdown() {
   const avatar = document.getElementById("userAvatar");

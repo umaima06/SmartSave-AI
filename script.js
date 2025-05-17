@@ -114,20 +114,42 @@ document.getElementById("saveGoalBtn")?.addEventListener("click", async () => {
 let totalBudget = 0;
 
 // Handle budget save
-document.getElementById("saveBudgetBtn").addEventListener("click", () => {
-  const budgetInput = document.getElementById("totalBudgetInput").value;
-  const confirmation = document.getElementById("budgetConfiguration");
-  if (budgetInput && budgetInput > 0) {
-    totalBudget = parseFloat(budgetInput);
-    confirmation.innerText = 'Total Budget  set to ₹${totalBudget}';
-    confirmation.style.color = "green";
-    confirmation.style.display = "block";
-    updateRemainingAmount();
-  } else {
+document.getElementById("saveBudgetBtn").addEventListener("click", async () => {
+  const budgetInput = parseFloat(document.getElementById("totalBudgetInput").value);
+  const confirmation = document.getElementById("budgetConfirmation");
+  const user = auth.currentUser;
+
+  if (!budgetInput || budgetInput <= 0) {
     confirmation.innerText = "Please enter a valid budget amount.";
     confirmation.style.color = "red";
     confirmation.style.display = "block";
-}
+    return;
+  }
+
+  if (!user) {
+    alert("Please log in first!");
+    return;
+  }
+
+  totalBudget = budgetInput;
+  confirmation.innerText = `Total Budget set to ₹${totalBudget}`;
+  confirmation.style.color = "green";
+  confirmation.style.display = "block";
+
+  try {
+    await setDoc(doc(db, "userPreferences", user.uid), {
+      budget: totalBudget,
+    }, { merge: true });
+
+    console.log("✅ Budget saved in Firestore: ₹" + totalBudget);
+  } catch (err) {
+    console.error("❌ Error saving budget:", err);
+    confirmation.innerText = "Error saving budget. Try again!";
+    confirmation.style.color = "red";
+    confirmation.style.display = "block";
+  }
+
+  updateRemainingAmount();
 });
 
 // Reusable function to calculate total expenses
