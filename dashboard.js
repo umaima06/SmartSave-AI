@@ -6,10 +6,11 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase
 document.addEventListener("DOMContentLoaded", () => {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      console.log("✅ User logged in:", user.uid);
+      console.log("User logged in:", user.uid);
       await fetchUserData(user.uid);
+      await fetchSmartTips(user.uid);
     } else {
-      console.warn("🚫 No user detected. Redirecting to login.");
+      console.warn("No user detected. Redirecting to login.");
       window.location.href = "login.html";
     }
   });
@@ -27,10 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
   confirmLogoutBtn.addEventListener("click", async () => {
     try {
       await signOut(auth);
-      console.log("✅ Logged out");
+      console.log("Logged out");
       window.location.href = "index.html";
     } catch (err) {
-      console.error("❌ Logout failed:", err);
+      console.error("Logout failed:", err);
     } finally {
       logoutModal.style.display = "none";
     }
@@ -58,21 +59,21 @@ async function fetchUserData(uid) {
       const basicData = userSnap.data();
       userData.name = basicData.name || "User";
     } else {
-      console.warn("⚠️ No name found in 'users' collection.");
+      console.warn("No name found in 'users' collection.");
     }
 
     if (prefsSnap.exists()) {
       const dashboardData = prefsSnap.data();
       userData = { ...userData, ...dashboardData };
     } else {
-      console.warn("⚠️ No dashboard data in 'userPreferences'.");
+      console.warn("No dashboard data in 'userPreferences'.");
     }
 
     updateUserDisplay(userData);
     updateDashboard(userData);
 
   } catch (error) {
-    console.error("🔥 Error fetching user data:", error);
+    console.error("Error fetching user data:", error);
   }
 }
 
@@ -86,7 +87,7 @@ function updateUserDisplay(userData) {
   } else {
     nameDisplay.textContent = "User";
     avatarDisplay.textContent = "U";
-    console.warn("ℹ️ No name provided in user data.");
+    console.warn("No name provided in user data.");
   }
 }
 
@@ -169,6 +170,25 @@ function drawSavingsLineChart(userData) {
     }
   });
 }
+
+async function fetchSmartTips(uid){
+  try{
+    const res = await fetch("https://smartsave-ai.onrender.com/api/ai/generate-tips", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({uid})
+    });
+
+    const data = await res.json();
+    const tipText = document.getElementById("aiTip");
+    tipText.textContent = data.reply;
+    }
+    catch (err) {
+      console.error("Failed to load AI tips:", err);
+      
+      document.getElementById("ai-tip-text").textContent = "Error loading tips. ";
+    }
+  }
 
 
 function setupAvatarDropdown() {
