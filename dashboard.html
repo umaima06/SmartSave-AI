@@ -12,15 +12,15 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">SmartSave AI</div>
+    <div class="hamburger" id="hamburgerMenu">☰</div>
     <ul class="nav-links" id="navLinks">
-      <li><a href="/">Home</a></li>
+      <li><a href="homepage.html">Home</a></li>
       <li><a href="/dashboard.html">Dashboard</a></li>
       <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSebsXTti6HWH6YUAdE_NTVdbXe-ElY-K5RSsTe9rYU7WocUkg/viewform?usp=sharing">Feedback</a></li>
     </ul>
     <div class="avatar" id="userAvatar">S</div>
     <div class="avatar-dropdown" id="avatarDropdown">
       <a href="#" id="logoutBtn">Logout</a>
-   <div class="hamburger" id="hamburgerMenu">☰</div>
   </nav>
 
   <!--  Welcome -->
@@ -72,21 +72,9 @@
   </div>
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="module" src="./dashboard.js" defer></script>
 
   <!-- CHATBOT! -->
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
-    <link rel="stylesheet" href="chatbot.css">
-</head>
-<body>
-
-    <!-- Chatbot Toggle Button -->
+ <!-- Chatbot Toggle Button -->
     <div id="chatbot-btn" onclick="toggleChatbot()">💬</div>
 
     <!-- Chatbot Container -->
@@ -110,9 +98,14 @@
         <div id="chatbot-input">
             <input type="text" id="user-input" placeholder="Type your message..." onkeypress="handleKeyPress(event)" />
             <button id="continue-btn" onclick="continueChat()">Continue ⏩</button>
-            <button onclick="sendMessage()">➤</button>
+            <button id="send-btn">➤</button>
         </div>
     </div>
+
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chatbot.js"></script>
+
     <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Toggle chatbot visibility
@@ -135,10 +128,7 @@
     });
   </script>
 
-<script src="chatbot.js"></script>
-    
-</body>
-</html>
-
+<script type="module" src="./dashboard.js" defer></script>
+  
 </body>
 </html>

@@ -92,15 +92,43 @@ function updateUserDisplay(userData) {
 }
 
 function updateDashboard(userData) {
-  const budget = userData.budget || 0;
-  const expenses = userData.expenses || 0;
-  const remaining = budget - expenses;
-
-  document.getElementById("budgetValue").textContent = "₹" + budget;
-  document.getElementById("expenseValue").textContent = "₹" + expenses;
-  document.getElementById("remainingValue").textContent = "₹" + remaining;
-
   const categories = userData.categoryAmounts || {};
+
+const totalExpenses = Object.values(categories).reduce((acc, val) => acc + (parseFloat(val) || 0), 0);
+const savingsGoal = parseFloat(userData.savingsGoal) || 0;
+const totalBudget = totalExpenses + savingsGoal;
+const remaining = totalBudget - totalExpenses; // This will always equal savingsGoal
+
+ document.getElementById("budgetValue").textContent = "₹" + totalBudget.toFixed(2);
+  document.getElementById("expenseValue").textContent = "₹" + totalExpenses.toFixed(2);
+  document.getElementById("remainingValue").textContent = "₹" + remaining.toFixed(2);
+
+  //  Auto-color + alert starts here
+  const budgetCard = document.querySelector(".budget-cards .card:nth-child(1)");
+  const expenseCard = document.querySelector(".budget-cards .card:nth-child(2)");
+  const remainingCard = document.querySelector(".budget-cards .card:nth-child(3)");
+
+  const remainingPercent = (remaining / totalBudget) * 100;
+
+if (remaining < 0) {
+  alert("⚠️ You're spending more than your budget!");
+  budgetCard.style.backgroundColor = "#f8d7da"; // red
+  remainingCard.style.backgroundColor = "#f8d7da";
+} else if (remaining / totalBudget >= 0.5) {
+  budgetCard.style.backgroundColor = "#d4edda"; // green
+  remainingCard.style.backgroundColor = "#d4edda";
+} else if (remaining / totalBudget >= 0.2) {
+  budgetCard.style.backgroundColor = "#fff3cd"; // yellow
+  remainingCard.style.backgroundColor = "#fff3cd";
+} else {
+  budgetCard.style.backgroundColor = "#f8d7da"; // red
+  remainingCard.style.backgroundColor = "#f8d7da";
+}
+
+  expenseCard.style.backgroundColor = "#e2e3e5"; // neutral gray
+  //  Auto-color + alert ends here
+document.getElementById("remainingValue").textContent = `₹${remaining.toFixed(2)} (${remaining >= 0 ? 'On Track!' : 'Overspending!'})`;
+
   const pieLabels = Object.keys(categories);
   const pieData = Object.values(categories);
 
@@ -117,7 +145,11 @@ function updateDashboard(userData) {
 
   drawSavingsLineChart(userData);
 }
-
+console.log("Total Expenses:", totalExpenses);
+console.log("Savings Goal:", savingsGoal);
+console.log("Total Budget:", totalBudget);
+console.log("Remaining:", remaining);
+console.log("Remaining %:", (remaining / totalBudget) * 100);
 function drawSavingsLineChart(userData) {
   const savings = userData.savingsHistory || [];
 
@@ -210,7 +242,7 @@ function setupAvatarDropdown() {
   });
 }
 
-document.getElementById("hamburger").addEventListener("click", () => {
-  const navLinks = document.getElementById("nav-Links");
-  navLinks.classList.toggle("active");
+document.getElementById("hamburgerMenu").addEventListener("click", () => {
+  const navLinks = document.getElementById("navLinks");
+  navLinks.classList.toggle("show");
 });

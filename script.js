@@ -111,3 +111,56 @@ document.getElementById("saveGoalBtn")?.addEventListener("click", async () => {
     confirmation.style.display = "block";
   }
 });
+
+let totalBudget = 0;
+
+// Handle budget save
+document.getElementById("saveBudgetBtn").addEventListener("click", () => {
+  const budgetInput = document.getElementById("totalBudgetInput").value;
+  if (budgetInput && budgetInput > 0) {
+    totalBudget = parseFloat(budgetInput);
+    document.getElementById("budgetConfirmation").innerText = `Total Budget set to ₹${totalBudget}`;
+    updateRemainingAmount();
+  } else {
+    alert("Please enter a valid budget amount.");
+  }
+});
+
+// Reusable function to calculate total expenses
+function getTotalExpenses() {
+  const inputs = document.querySelectorAll(".amount-input");
+  let total = 0;
+  inputs.forEach(input => {
+    if (!input.disabled && input.value) {
+      total += parseFloat(input.value);
+    }
+  });
+  return total;
+}
+
+// Update remaining amount whenever expenses or budget change
+function updateRemainingAmount() {
+  const totalExpenses = getTotalExpenses();
+  const remaining = totalBudget - totalExpenses;
+  document.getElementById("total-amount").innerText = totalExpenses;
+
+  let remainingEl = document.getElementById("remaining-amount");
+  if (!remainingEl) {
+    const newEl = document.createElement("p");
+    newEl.id = "remaining-amount";
+    newEl.innerHTML = `<strong>Remaining (Savings):</strong> ₹${remaining}`;
+    document.getElementById("total-container").appendChild(newEl);
+  } else {
+    remainingEl.innerHTML = `<strong>Remaining (Savings):</strong> ₹${remaining}`;
+  }
+}
+
+// Update remaining whenever expenses are changed
+document.querySelectorAll(".amount-input").forEach(input => {
+  input.addEventListener("input", updateRemainingAmount);
+});
+
+// Also call update when categories are checked/unchecked
+document.querySelectorAll(".category-check").forEach(check => {
+  check.addEventListener("change", updateRemainingAmount);
+});

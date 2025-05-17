@@ -287,6 +287,30 @@ footer {
   margin-top: 10px;
   display: none;
 }
+
+.goal-card,
+.budget-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  background: #f4f8fc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  width: 45%;
+  margin: 20px auto;
+}
+
+.goal-card {
+  float: left;
+  margin-right: 5%;
+}
+
+.budget-card {
+  float: right;
+}
+.confirmation-text {
+  color: green;
+  font-weight: 500;
+}
 /* Mobile-first, already handled with max-width and %s */
 
 @media (min-width: 480px) {
