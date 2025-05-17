@@ -24,8 +24,6 @@ document.getElementById("generate-budget-btn").addEventListener("click", async (
     return;
   }
 
-  const totalBudget = Object.values(categoryAmounts).reduce((acc, val) => acc + val, 0);
-
   const userDocRef = doc(db, "userPreferences", user.uid);
 
   try {
@@ -117,13 +115,18 @@ let totalBudget = 0;
 // Handle budget save
 document.getElementById("saveBudgetBtn").addEventListener("click", () => {
   const budgetInput = document.getElementById("totalBudgetInput").value;
+  const confirmation = document.getElementById("budgetConfiguration");
   if (budgetInput && budgetInput > 0) {
     totalBudget = parseFloat(budgetInput);
-    document.getElementById("budgetConfirmation").innerText = `Total Budget set to ₹${totalBudget}`;
+    confirmation.innerText = 'Total Budget  set to ₹${totalBudget}';
+    confirmation.style.color = "green";
+    confirmation.style.display = "block";
     updateRemainingAmount();
   } else {
-    alert("Please enter a valid budget amount.");
-  }
+    confirmation.innerText = "Please enter a valid budget amount.";
+    confirmation.style.color = "red";
+    confirmation.style.display = "block";
+}
 });
 
 // Reusable function to calculate total expenses
