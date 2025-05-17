@@ -25,6 +25,7 @@ document.getElementById("generate-budget-btn").addEventListener("click", async (
   }
 
   const userDocRef = doc(db, "userPreferences", user.uid);
+  const totalExpenses = Object.values(categoryAmounts).reduce((sum, amt) => sum + amt, 0);
 
   try {
     await setDoc(userDocRef, {
@@ -32,7 +33,7 @@ document.getElementById("generate-budget-btn").addEventListener("click", async (
       categoryAmounts,
       savingsGoal,
       budget: totalBudget,
-      expenses: 0
+      expenses: totalExpenses
     }, { merge: true });
 
     // Save savings goal + history after budget data is saved
