@@ -50,7 +50,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     localStorage.setItem("uid", user.uid);
 
     // 🎉 Redirect to homepage or dashboard
-    window.location.href = "index.html";
+    window.location.href = "homepage.html";
   } catch (err) {
     console.error("Signup Error 👉", err.code, err.message);
     alert("Error: " + err.message);

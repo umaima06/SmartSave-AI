@@ -17,7 +17,7 @@ const saveBudgetAndCategories = async (uid, budget, categoryAmounts) => {
 };
 
 
-// 🧠 Fill missing days in savingsHistory (kept inside firebase.js, so removed here)
+// fill missing days in savingsHistory (kept inside firebase.js, so removed here)
 
 document.getElementById("generate-budget-btn").addEventListener("click", async () => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -68,7 +68,7 @@ document.getElementById("generate-budget-btn").addEventListener("click", async (
   }
 });
 
-// 🧃 Checkbox toggle input
+// Checkbox toggle input
 document.querySelectorAll(".category-check").forEach(checkbox => {
   checkbox.addEventListener("change", () => {
     const inputId = checkbox.dataset.target;
@@ -78,7 +78,7 @@ document.querySelectorAll(".category-check").forEach(checkbox => {
   });
 });
 
-// 💸 Total amount calculator
+// Total amount calculator
 const amountInputs = document.querySelectorAll(".amount-input");
 const totalAmountEl = document.getElementById("total-amount");
 
@@ -94,7 +94,7 @@ amountInputs.forEach(input => {
   });
 });
 
-// Save goal button (optional, but you already handle in main save, so can be removed or kept)
+// Save goal button
 document.getElementById("saveGoalBtn")?.addEventListener("click", async () => {
   const goalInput = parseFloat(document.getElementById("savingsGoalInput").value);
   const confirmation = document.getElementById("goalConfirmation");
@@ -174,7 +174,9 @@ document.getElementById("saveBudgetBtn").addEventListener("click", async () => {
   await saveBudgetAndCategories(user.uid, totalBudget, categoryAmounts);
 
   updateRemainingAmount();
-});document.getElementById("saveBudgetBtn").addEventListener("click", async () => {
+});
+
+document.getElementById("saveBudgetBtn").addEventListener("click", async () => {
   const budgetInput = parseFloat(document.getElementById("totalBudgetInput").value);
   const confirmation = document.getElementById("budgetConfirmation");
   const user = auth.currentUser;
@@ -211,4 +213,3 @@ document.getElementById("saveBudgetBtn").addEventListener("click", async () => {
 
   updateRemainingAmount();
 });
-
