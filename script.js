@@ -2,6 +2,21 @@ import { db, auth } from "./firebase.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { saveSavingsGoal } from "./firebase.js";
 
+
+const saveBudgetAndCategories = async (uid, budget, categoryAmounts) => {
+  try {
+    const prefsRef = doc(db, "userPreferences", uid);
+    await setDoc(prefsRef, {
+      budget,
+      categoryAmounts,
+    }, { merge: true });
+    console.log("✅ Budget & categories saved.");
+  } catch (error) {
+    console.error("❌ Error saving budget and categories:", error);
+  }
+};
+
+
 // 🧠 Fill missing days in savingsHistory (kept inside firebase.js, so removed here)
 
 document.getElementById("generate-budget-btn").addEventListener("click", async () => {
@@ -79,7 +94,7 @@ amountInputs.forEach(input => {
   });
 });
 
-// 🎯 Save goal button (optional, but you already handle in main save, so can be removed or kept)
+// Save goal button (optional, but you already handle in main save, so can be removed or kept)
 document.getElementById("saveGoalBtn")?.addEventListener("click", async () => {
   const goalInput = parseFloat(document.getElementById("savingsGoalInput").value);
   const confirmation = document.getElementById("goalConfirmation");
@@ -149,6 +164,15 @@ document.getElementById("saveBudgetBtn").addEventListener("click", async () => {
     confirmation.style.display = "block";
   }
 
+  const categoryAmounts = {};
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cat => {
+    const inputId = cat.dataset.target;
+    const amount = parseFloat(document.getElementById(inputId).value) || 0;
+    categoryAmounts[cat.value] = amount;
+  });
+
+  await saveBudgetAndCategories(user.uid, totalBudget, categoryAmounts);
+
   updateRemainingAmount();
 });
 
@@ -190,3 +214,4 @@ document.querySelectorAll(".amount-input").forEach(input => {
 document.querySelectorAll(".category-check").forEach(check => {
   check.addEventListener("change", updateRemainingAmount);
 });
+

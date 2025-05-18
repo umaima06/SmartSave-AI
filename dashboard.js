@@ -93,21 +93,31 @@ function updateUserDisplay(userData) {
 
 function updateDashboard(userData) {
   const categories = userData.categoryAmounts || {};
-  const totalExpenses = Object.values(categories).reduce((acc, val) => acc + (parseFloat(val) || 0), 0);
   const totalBudget = parseFloat(userData.budget) || 0;
+
+  // Sum all expenses
+  const totalExpenses = Object.values(categories).reduce((acc, val) => acc + (parseFloat(val) || 0), 0);
+
   const remaining = totalBudget - totalExpenses;
 
-  // Update values
+  // 🧠 DOM Updates
   document.getElementById("budgetValue").textContent = totalBudget.toFixed(2);
   document.getElementById("expenseValue").textContent = totalExpenses.toFixed(2);
-  document.getElementById("remainingValue").textContent = `${remaining.toFixed(2)} (${remaining >= 0 ? 'On Track!' : 'Overspending!'})`;
 
-  // Color logic
+  const remainingText = `${remaining.toFixed(2)} (${remaining >= 0 ? 'On Track!' : 'Overspending!'})`;
+  document.getElementById("remainingValue").textContent = remainingText;
+
+  // 💡 Color Logic
   const budgetCard = document.querySelector(".budget-cards .card:nth-child(1)");
   const expenseCard = document.querySelector(".budget-cards .card:nth-child(2)");
   const remainingCard = document.querySelector(".budget-cards .card:nth-child(3)");
 
-  const remainingPercent = (remaining / totalBudget) * 100;
+  const remainingPercent = (totalBudget === 0) ? 0 : (remaining / totalBudget) * 100;
+
+  // Reset card styles
+  [budgetCard, expenseCard, remainingCard].forEach(card => {
+    card.style.backgroundColor = ""; // reset any weird leftover styles
+  });
 
   if (remaining < 0) {
     alert("⚠️ You're spending more than your budget!");
@@ -126,7 +136,7 @@ function updateDashboard(userData) {
 
   expenseCard.style.backgroundColor = "#e2e3e5";
 
-  // Charts
+  // 🥧 Charts
   const pieLabels = Object.keys(categories);
   const pieData = Object.values(categories);
 
