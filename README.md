@@ -1,37 +1,37 @@
 # 💰 SmartSave AI - Your Personal Finance Assistant
 
-SmartSave AI is a smart, minimalistic, and interactive web-based personal finance assistant designed to help users **track expenses**, **set savings goals**, and get **AI-powered money-saving tips**.
+SmartSave AI is an intelligent, interactive, and gamified budgeting assistant that helps users track expenses, set savings goals, and get smart financial advice — all in one place.
 
-Built for the **2025 Hackathon**, SmartSave AI aims to **gamify financial literacy** and make budgeting fun, intelligent, and accessible!
-
----
-
-## Features
-
-✨ **AI Financial Tips**  
-Get personalized suggestions using OpenAI to improve your financial habits.
-
-📊 **Dashboard Analytics**  
-View budget, expenses, savings, and goals—visually represented with dynamic charts and cards.
-
-🔐 **Firebase Authentication**  
-Secure login/signup using Firebase Auth.
-
-📁 **User Data Storage**  
-User budgets, expenses, and preferences are stored in Firestore and retrieved real-time.
-
-📆 **Timeline View**  
-View all past transactions and savings entries in an organized timeline format.
-
-🎯 **Goal Tracking**  
-Set custom savings goals and monitor your progress visually.
-
-📱 **Responsive UI**  
-Fully mobile-friendly with a collapsible navbar and clean layout using HTML, CSS, and JavaScript.
+Designed during the *2025 Hackathon*, this project leverages AI and intuitive design to help users take charge of their finances without stress. 
 
 ---
 
-## 🧠 Tech Stack
+## 🚀 Features
+
+✨ *AI Financial Tips Generator*  
+Personalized suggestions to help you budget smarter using OpenAI’s GPT API.
+
+💬 *SmartSave AI Chatbot*  
+A conversational assistant that answers user questions about saving money, managing expenses, and general financial advice. (Built with OpenAI & Flask backend)
+
+📊 *Dashboard Analytics*  
+Real-time expense tracking with beautiful charts and responsive budget overview cards.
+
+🔐 *Firebase Authentication*  
+Secure and smooth user login & signup via Firebase Auth.
+
+📁 *Firestore Integration*  
+All user data is stored and retrieved in real-time from Firebase Firestore.
+
+🎯 *Savings Goal Tracker*  
+Set personalized savings goals and monitor your progress visually.
+
+📱 *Mobile-First UI*  
+A responsive layout built with HTML, CSS & JavaScript for seamless use across devices.
+
+---
+
+##  Tech Stack
 
 | Tech                | Description                                   |
 |---------------------|-----------------------------------------------|
