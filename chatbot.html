@@ -32,9 +32,10 @@
         <div id="chatbot-input">
             <input type="text" id="user-input" placeholder="Type your message..." onkeypress="handleKeyPress(event)" />
             <button id="continue-btn" onclick="continueChat()">Continue ⏩</button>
-            <button onclick="sendMessage()">➤</button>
+            <button id="send-btn" onclick="sendMessage()">➤</button>
         </div>
     </div>
+
     <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Toggle chatbot visibility
@@ -53,11 +54,10 @@
 
       // Send + Continue buttons
       document.getElementById("send-btn").addEventListener("click", sendMessage);
-      document.getElementById("continue-btn").addEventListener("click", continueChat);
     });
   </script>
 
-<script src="chatbot.js"></script>
+<script src="chatbot.js" type="module"></script>
     
 </body>
 </html>

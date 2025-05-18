@@ -9,6 +9,8 @@ document.getElementById("close-btn").addEventListener("click", function() {
     document.getElementById("chatbot-container").style.display = "none";
 });
 
+import { auth } from "./firebase.js";
+
 let chatHistory = [
   {
     role: "system",
@@ -31,10 +33,13 @@ function sendMessage() {
 
   displayTypingIndicator();
 
-  fetch("https://smartsave-ai.onrender.com/api/chatbot", {
+const user = auth.currentUser;
+const uid = user?.uid;
+
+fetch("https://smartsave-ai.onrender.com/api/chatbot", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ messages: chatHistory })
+  body: JSON.stringify({ uid, messages: chatHistory })
 })
 
     .then((res) => res.json())
@@ -58,10 +63,13 @@ function continueChat() {
   chatHistory.push({ role: "user", content: userFollowUp });
   displayTypingIndicator();
 
-  fetch("https://smartsave-ai.onrender.com/api/chatbot", {
+  const user = auth.currentUser;
+const uid = user?.uid;
+
+fetch("https://smartsave-ai.onrender.com/api/chatbot", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ messages: chatHistory })
+  body: JSON.stringify({ uid, messages: chatHistory })
 })
 
     .then((res) => res.json())
@@ -142,3 +150,8 @@ function removeTypingIndicator() {
 function handleKeyPress(event) {
     if (event.key === "Enter") sendMessage();
 }
+
+window.sendMessage = sendMessage;
+window.continueChat = continueChat;
+window.toggleChatbot = toggleChatbot;
+window.handleKeyPress = handleKeyPress;

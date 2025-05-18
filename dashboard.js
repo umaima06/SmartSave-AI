@@ -250,3 +250,18 @@ document.getElementById("hamburgerMenu").addEventListener("click", () => {
   const navLinks = document.getElementById("navLinks");
   navLinks.classList.toggle("show");
 });
+
+// Dashboard export option
+document.getElementById("exportPdfBtn").addEventListener("click", () => {
+  const dashboardContent = document.getElementById("dashboardContent");
+
+  const opt = {
+    margin:       0.5,
+    filename:     'SmartSave-Dashboard.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opt).from(dashboardContent).save();
+});
